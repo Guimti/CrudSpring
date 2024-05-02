@@ -17,33 +17,35 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-public class ProductController   {
+public class ProductController {
 
-   @Autowired
+    @Autowired
     ProducRepository producRepository;
 
     @PostMapping("/products")
-    public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto ){
+    public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
         var productModel = new ProductModel();
         BeanUtils.copyProperties(productRecordDto, productModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(producRepository.save(productModel));
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List <ProductModel>> getAllProducts(){
+    public ResponseEntity<List<ProductModel>> getAllProducts() {
 
         return ResponseEntity.status(HttpStatus.OK).body(producRepository.findAll());
 
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Object> getOneProduct(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Object> getOneProduct(@PathVariable(value = "id") UUID id) {
         Optional<ProductModel> productO = producRepository.findById(id);
-        if(productO.isEmpty()){
+        if (productO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
         }
-    } return ResponseEntity.status(HttpStatus.OK).body(productO.get()); //get one
-}
+        return ResponseEntity.status(HttpStatus.OK).body(productO.get());
 
+    }
+
+}
 
 
