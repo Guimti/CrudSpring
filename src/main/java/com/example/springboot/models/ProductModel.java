@@ -1,8 +1,9 @@
 package com.example.springboot.models;
 
-import jakarta.persistence.*;
+
 import org.springframework.hateoas.RepresentationModel;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -17,7 +18,6 @@ public class ProductModel  extends RepresentationModel<ProductModel> implements 
     private UUID idProduct;
     private String name;
     private BigDecimal value;
-
 
 
     public UUID getIdProduct() {
