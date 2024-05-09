@@ -39,7 +39,7 @@ public class ProductController {
         List<ProductModel> productsList = producRepository.findAll();
         if (!productsList.isEmpty()) {
             for (ProductModel product : productsList) {
-                UUID id = product.getIdProduct();
+                Long id = product.getIdProduct();
                 product.add(linkTo(methodOn(ProductController.class).getOneProduct(id)).withSelfRel());
             }
         }
@@ -48,7 +48,7 @@ public class ProductController {
 
     @Operation(summary = "Obter um produto específico pelo ID")
     @GetMapping("/products/{id}")
-    public ResponseEntity<Object> getOneProduct(@Parameter(description = "ID do produto a ser obtido") @PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> getOneProduct(@Parameter(description = "ID do produto a ser obtido") @PathVariable(value = "id") Long id) {
         Optional<ProductModel> productO = producRepository.findById(id);
         if (productO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
@@ -58,7 +58,7 @@ public class ProductController {
 
     @Operation(summary = "Atualizar um produto existente pelo ID")
     @PutMapping("/products/{id}")
-    public ResponseEntity<Object> updateProduct(@Parameter(description = "ID do produto a ser atualizado") @PathVariable(value = "id") UUID id,
+    public ResponseEntity<Object> updateProduct(@Parameter(description = "ID do produto a ser atualizado") @PathVariable(value = "id") Long id,
                                                 @Valid @RequestBody ProductRecordDto productRecordDto) {
 
         Optional<ProductModel> productO = producRepository.findById(id);
@@ -72,7 +72,7 @@ public class ProductController {
 
     @Operation(summary = "Excluir um produto pelo ID")
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Object> deleteProduct(@Parameter(description = "ID do produto a ser excluído") @PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> deleteProduct(@Parameter(description = "ID do produto a ser excluído") @PathVariable(value = "id") Long id) {
         Optional<ProductModel> productO = producRepository.findById(id);
         if (productO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");

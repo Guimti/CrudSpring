@@ -15,16 +15,16 @@ public class ProductModel  extends RepresentationModel<ProductModel> implements 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idProduct;
+    private Long idProduct;
     private String name;
     private BigDecimal value;
 
 
-    public UUID getIdProduct() {
+    public Long getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(UUID idProduct) {
+    public void setIdProduct(Long idProduct) {
         this.idProduct = idProduct;
     }
 

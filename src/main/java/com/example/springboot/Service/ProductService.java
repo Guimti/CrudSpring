@@ -21,7 +21,7 @@ public class ProductService {
         return producRepository.findAll();
     }
 
-    public Optional<ProductModel> getProductById(UUID id) {
+    public Optional<ProductModel> getProductById(Long id) {
         return producRepository.findById(id);
     }
 
@@ -31,10 +31,9 @@ public class ProductService {
         return producRepository.save(productModel);
     }
 
-    public ProductModel updateProduct(UUID id, ProductRecordDto productRecordDto) {
+    public ProductModel updateProduct(Long id, ProductRecordDto productRecordDto) {
         Optional<ProductModel> productO = producRepository.findById(id);
         if (productO.isEmpty()) {
-            // Handle not found scenario
             return null;
         }
         var productModel = productO.get();
@@ -42,7 +41,7 @@ public class ProductService {
         return producRepository.save(productModel);
     }
 
-    public void deleteProduct(UUID id) {
+    public void deleteProduct(Long id) {
         Optional<ProductModel> productO = producRepository.findById(id);
         productO.ifPresent(producRepository::delete);
     }
