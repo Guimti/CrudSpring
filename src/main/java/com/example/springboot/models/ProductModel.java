@@ -19,6 +19,7 @@ public class ProductModel  extends RepresentationModel<ProductModel> implements 
     private BigDecimal value;
 
 
+
     public UUID getIdProduct() {
         return idProduct;
     }
