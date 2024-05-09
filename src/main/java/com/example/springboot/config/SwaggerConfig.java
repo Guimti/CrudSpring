@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.springboot.Controllers.ProductController"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.springboot.Controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
